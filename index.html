@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rockstar Bros | ESIEE-IT</title>
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -81,7 +82,7 @@
         </p>
 
         <div class="flex justify-center gap-4">
-            <a href="https://adam782.itch.io/rockstar-bros" target="_blank" class="btn-primary px-10 py-4 rounded-full font-bold text-lg flex items-center gap-2">
+            <a href="https://rockstar-bros.itch.io/rockstar-bros" target="_blank" class="btn-primary px-10 py-4 rounded-full font-bold text-lg flex items-center gap-2">
                 <i class="fa-solid fa-play"></i> JOUER MAINTENANT
             </a>
             <a href="#story" class="px-8 py-4 rounded-full font-bold text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 transition-all">
@@ -157,6 +158,10 @@
             </div>
 
             <div class="carousel-container bg-gradient-to-br from-purple-900 via-purple-800 to-black border-2 border-purple-300">
+                <div class="text-center text-white py-3 border-b border-purple-600/60">
+                    <p class="text-xs uppercase tracking-[0.25em] text-yellow-300 mb-1">Boss actuel</p>
+                    <p id="boss-name" class="text-xl font-extrabold drop-shadow-md">Lars Ümlaüt</p>
+                </div>
                 <img src="assets/images/boss/boss_attack.png" class="boss-slide active" alt="Boss 1 - Guitar Hero">
                 <img src="assets/images/boss/boss2_attack.png" class="boss-slide" alt="Boss 2 - Guitar Hero">
                 <img src="assets/images/boss/boss3_attack.png" class="boss-slide" alt="Boss 3 - Guitar Hero">
@@ -213,17 +218,25 @@
         // Carrousel Boss
         let bossSlideIndex = 0;
         const bossSlides = document.querySelectorAll('.boss-slide');
+        const bossNames = ['Lars Ümlaüt', 'Slasher', 'Judy Nails'];
+        const bossNameEl = document.getElementById('boss-name');
         
         function showBossSlides() {
             bossSlides.forEach(slide => slide.classList.remove('active'));
             bossSlideIndex++;
             if (bossSlideIndex >= bossSlides.length) { bossSlideIndex = 0; }
             bossSlides[bossSlideIndex].classList.add('active');
+            if (bossNameEl) {
+                bossNameEl.textContent = bossNames[bossSlideIndex] || '';
+            }
             setTimeout(showBossSlides, 4000); 
         }
 
         if (bossSlides.length > 0) {
             bossSlides[0].classList.add('active');
+            if (bossNameEl) {
+                bossNameEl.textContent = bossNames[0];
+            }
             setTimeout(showBossSlides, 4000);
         }
     </script>
